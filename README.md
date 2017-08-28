@@ -11,14 +11,17 @@ A Yeoman generator for basic lambda functions following the instructions below.
 ```
 npm i -g yo
 ```
-3) Clone `generator-semios-lambda-template` to your local machine and move into this directory.
+3) Clone `generator-semios-lambda-template` to your local machine.
 4)
 ```
+cd generator-semios-lambda-template
+npm i
 npm link
 ```
-5) Create and move into a new directory named after your to-be lambda function.
+5) Create a new directory named after your to-be lambda function.
 5)
 ```
+cd [directory-name]
 yo semios-lambda-template:create
 ```
 6) Follow the prompts
