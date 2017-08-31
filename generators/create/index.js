@@ -12,19 +12,25 @@ module.exports = class extends Generator {
     },
     {
       type: 'input',
-      name: 'appname',
+      name: 'appName',
       message: 'Your project name',
       default: this.appname.replace(/\s+/g, '-') // Default to current folder name
+    },
+    {
+      type: 'confirm',
+      name: 'allMeta',
+      message: 'Is this lambda hooked up to All Meta?'
     }]).then((answers) => {
 
-      this.appname = answers.appname;
+      this.appName = answers.appName;
       this.name = answers.name;
+      this.allMeta = answers.allMeta;
 
       return this.prompt([{
         type: 'input',
         name: 'gitrepo',
         message: 'Your git repository URL',
-        default: `https://github.com/semiosBIO/${answers.appname}.git` // Default to current appname
+        default: `https://github.com/semiosBIO/${answers.appName}.git` // Default to current appName
       }]).then((answer) => {
 
         this.gitrepo = answer.gitrepo;
@@ -44,16 +50,11 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('build.sh'),
       this.destinationPath('./build.sh'),
-      { name: this.appname }
+      { name: this.appName }
     );
     this.fs.copyTpl(
       this.templatePath('context.js'),
       this.destinationPath('./context.js'),
-      { }
-    );
-    this.fs.copyTpl(
-      this.templatePath('test.js'),
-      this.destinationPath('./test.js'),
       { }
     );
     this.fs.copyTpl(
@@ -66,6 +67,29 @@ module.exports = class extends Generator {
       this.destinationPath('./.gitignore'),
       { }
     );
+    this.fs.copyTpl(
+      this.templatePath('config.json'),
+      this.destinationPath('./config.json'),
+      { }
+    );
+    if (this.allMeta) {
+
+      this.fs.copyTpl(
+        this.templatePath('allMetaTest.js'),
+        this.destinationPath('./test.js'),
+        { }
+      );
+
+    }
+    else {
+
+      this.fs.copyTpl(
+        this.templatePath('test.js'),
+        this.destinationPath('./test.js'),
+        { }
+      );
+
+    }
 
   }
   installing() {
@@ -83,7 +107,7 @@ module.exports = class extends Generator {
       'skip-license': false,
 
       // supply alternative defaults
-      name: this.appname,
+      name: this.appName,
       version: '1.0.0',
       description: '',
       main: 'index.js',
@@ -111,6 +135,19 @@ module.exports = class extends Generator {
         minimist: '^1.2.0'
       }
     };
+
+    if (this.allMeta) {
+
+      options.dependencies = {
+        'aws-sdk': '^2.106.0',
+        colors: '^1.1.2',
+        'is-lambda': '^1.0.1',
+        lodash: '^4.17.4',
+        moment: '^2.18.1',
+        'promise-each': '^2.2.0'
+      };
+
+    }
 
     this.composeWith(require.resolve('generator-npm-init/app'), options);
 
