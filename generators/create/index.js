@@ -67,16 +67,16 @@ module.exports = class extends Generator {
       this.destinationPath('./.gitignore'),
       { }
     );
-    this.fs.copyTpl(
-      this.templatePath('config.json'),
-      this.destinationPath('./config.json'),
-      { }
-    );
     if (this.allMeta) {
 
       this.fs.copyTpl(
         this.templatePath('allMetaTest.js'),
         this.destinationPath('./test.js'),
+        { }
+      );
+      this.fs.copyTpl(
+        this.templatePath('config.json'),
+        this.destinationPath('./config.json'),
         { }
       );
 
@@ -158,6 +158,11 @@ module.exports = class extends Generator {
     this.installDependencies({
       bower: false,
     });
+
+  }
+  end() {
+
+    if (this.allMeta) this.log('Config.json has been created for you. AWS credentials must be entered here in order to access the S3 bucket for testing.');
 
   }
 };
