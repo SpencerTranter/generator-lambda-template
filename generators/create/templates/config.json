@@ -1,0 +1,18 @@
+{
+  "stage": {
+    "aws": {
+      "accessKeyId": "",
+      "secretAccessKey": "",
+      "region": ""
+    },
+    "bucket": ""
+  },
+  "prod": {
+    "aws": {
+      "accessKeyId": "",
+      "secretAccessKey": "",
+      "region": ""
+    },
+    "bucket": ""
+  }
+}
