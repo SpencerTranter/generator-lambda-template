@@ -31,3 +31,11 @@ git add .
 git commit -m 'First commit with lambda template'
 git push origin [branch name]
 ```
+9) If you have selected yes to the generators question `Is this lambda hooked up to All Meta?` you must also go into your `.bashrc` and set these env variables.
+```
+export AWS_ACESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+export AWS_REGION=
+export ALL_META_PROD=(s3 bucket name)
+export ALL_META_STAGE=(s3 bucket name)
+```

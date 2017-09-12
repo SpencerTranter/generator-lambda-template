@@ -74,11 +74,6 @@ module.exports = class extends Generator {
         this.destinationPath('./test.js'),
         { }
       );
-      this.fs.copyTpl(
-        this.templatePath('config.json'),
-        this.destinationPath('./config.json'),
-        { }
-      );
 
     }
     else {
