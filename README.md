@@ -11,7 +11,7 @@ A Yeoman generator for basic lambda functions following the instructions below.
 ```
 npm i -g yo
 ```
-3) Clone `generator-semios-lambda-template` to your local machine.
+3) Clone `generator-lambda-template` to your local machine.
 4)
 ```
 cd generator-semios-lambda-template
@@ -31,11 +31,10 @@ git add .
 git commit -m 'First commit with lambda template'
 git push origin [branch name]
 ```
-9) If you have selected yes to the generators question `Is this lambda hooked up to All Meta?` you must also go into your `.bashrc` and set these env variables.
-```
-export AWS_ACESS_KEY_ID=
-export AWS_SECRET_ACCESS_KEY=
-export AWS_REGION=
-export ALL_META_PROD=(s3 bucket name)
-export ALL_META_STAGE=(s3 bucket name)
-```
+9) To get the function uploaded to AWS you need to create a zip file by running `./build.sh` this may require you run `chmod +x build.sh` first.
+
+10) Head over to the AWS console, create your lambda function and add the zip file.
+
+---
+
+NOTE: If your function requires any configs please create a `config.json` file and add them to that.

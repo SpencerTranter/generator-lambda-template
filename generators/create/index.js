@@ -15,16 +15,10 @@ module.exports = class extends Generator {
       name: 'appName',
       message: 'Your project name',
       default: this.appname.replace(/\s+/g, '-') // Default to current folder name
-    },
-    {
-      type: 'confirm',
-      name: 'allMeta',
-      message: 'Is this lambda hooked up to All Meta?'
     }]).then((answers) => {
 
       this.appName = answers.appName;
       this.name = answers.name;
-      this.allMeta = answers.allMeta;
 
       return this.prompt([{
         type: 'input',
@@ -67,24 +61,11 @@ module.exports = class extends Generator {
       this.destinationPath('./.gitignore'),
       { }
     );
-    if (this.allMeta) {
-
-      this.fs.copyTpl(
-        this.templatePath('allMetaTest.js'),
-        this.destinationPath('./test.js'),
-        { }
-      );
-
-    }
-    else {
-
-      this.fs.copyTpl(
-        this.templatePath('test.js'),
-        this.destinationPath('./test.js'),
-        { }
-      );
-
-    }
+    this.fs.copyTpl(
+      this.templatePath('test.js'),
+      this.destinationPath('./test.js'),
+      { }
+    );
 
   }
   installing() {
@@ -138,7 +119,6 @@ module.exports = class extends Generator {
         colors: '^1.1.2',
         'is-lambda': '^1.0.1',
         lodash: '^4.17.4',
-        moment: '^2.18.1',
         'promise-each': '^2.2.0'
       };
 
@@ -157,7 +137,7 @@ module.exports = class extends Generator {
   }
   end() {
 
-    if (this.allMeta) this.log('Config.json has been created for you. AWS credentials must be entered here in order to access the S3 bucket for testing.');
+    if (this.allMeta) this.log(`Your lambda function ${this.appName} has now been created! Follow the rest if the steps in the README to continue.`);
 
   }
 };

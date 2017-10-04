@@ -1,5 +1,5 @@
 const index     = require('./index.js');
-const { merge } = require('lodash');
+const _         = require('lodash');
 const argv      = require('minimist')(process.argv.slice(2)); //eslint-disable-line
 
 var json;
@@ -11,7 +11,7 @@ var config = {
 };
 
 // override the default settings if not passed.
-merge(config, argv);
+_.merge(config, argv);
 
 context = require('./context')(config);
 json    = require('./sample.json');
