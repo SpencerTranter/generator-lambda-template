@@ -37,8 +37,8 @@ git push origin [branch name]
 
 ---
 
-###NOTES:
+##NOTES:
 
 If your function requires any configs please create a `config.json` file and add them to that.
 
-The `sample.json` file is to be filled in with a payload of what your lambda will receive. 
+The `sample.json` file is to be filled in with a payload of what your lambda will receive.
