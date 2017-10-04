@@ -14,7 +14,7 @@ npm i -g yo
 3) Clone `generator-lambda-template` to your local machine.
 4)
 ```
-cd generator-semios-lambda-template
+cd generator-lambda-template
 npm i
 npm link
 ```
@@ -22,7 +22,7 @@ npm link
 5)
 ```
 cd [directory-name]
-yo semios-lambda-template:create
+yo lambda-template:create
 ```
 6) Follow the prompts
 8)
