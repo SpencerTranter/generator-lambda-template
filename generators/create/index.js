@@ -12,19 +12,25 @@ module.exports = class extends Generator {
     },
     {
       type: 'input',
+      name: 'gitName',
+      message: 'Your github name username',
+      store: true
+    },
+    {
+      type: 'input',
       name: 'appName',
       message: 'Your project name',
       default: this.appname.replace(/\s+/g, '-') // Default to current folder name
     }]).then((answers) => {
 
-      this.appName = answers.appName;
       this.name = answers.name;
+      this.appName = answers.appName;
 
       return this.prompt([{
         type: 'input',
         name: 'gitrepo',
         message: 'Your git repository URL',
-        default: `https://github.com/semiosBIO/${answers.appName}.git` // Default to current appName
+        default: `https://github.com/${answers.gitName}/${answers.appName}.git` // Default to current appName
       }]).then((answer) => {
 
         this.gitrepo = answer.gitrepo;
