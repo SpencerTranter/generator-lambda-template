@@ -37,7 +37,7 @@ git push origin [branch name]
 
 ---
 
-## NOTES:
+## Notes
 
 If your function requires any configs please create a `config.json` file and add them to that.
 
