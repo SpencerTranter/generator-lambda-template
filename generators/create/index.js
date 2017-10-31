@@ -139,7 +139,7 @@ module.exports = class extends Generator {
 
     this.composeWith(require.resolve('generator-git-init'));
 
-    this.composeWith('semios-lambda-template:git', { gitrepo: this.gitrepo });
+    this.composeWith('lambda-template:git', { gitrepo: this.gitrepo });
 
     this.installDependencies({
       bower: false,
@@ -148,7 +148,7 @@ module.exports = class extends Generator {
   }
   end() {
 
-    if (this.allMeta) this.log(`Your lambda function ${this.appName} has now been created! Follow the rest if the steps in the README to continue.`);
+    this.log(`Your lambda function ${this.appName} has now been created! Follow the rest if the steps in the README to deploy.`);
 
   }
 };
